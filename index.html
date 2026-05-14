@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta · Tesoros del Catatumbo</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --negro:    #0E0E0E;
+    --carbon:   #1A1A1A;
+    --grafito:  #2C2C2C;
+    --medio:    #5A5A5A;
+    --gris:     #8A8A8A;
+    --borde:    #E2E2E2;
+    --fondo:    #F8F7F5;
+    --blanco:   #FFFFFF;
+    --acento:   #C8995A;
+    --acento2:  #E8B878;
+    --acento-bg:#FDF6ED;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Manrope', sans-serif;
+    background: var(--fondo);
+    color: var(--negro);
+    font-size: 13.5px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ══ PORTADA ══ */
+  .portada {
+    min-height: 100vh;
+    background: var(--negro);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 52px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .portada-grain {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .portada-circle {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,153,90,0.07) 0%, transparent 70%);
+    bottom: -200px; right: -150px;
+    pointer-events: none;
+  }
+
+  .portada-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; z-index: 2;
+  }
+
+  .portada-marca {
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--acento);
+  }
+
+  .portada-meta {
+    font-size: 11px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.08em;
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  .portada-mid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative; z-index: 2;
+    padding: 40px 0;
+  }
+
+  .portada-label {
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    font-weight: 500;
+    margin-bottom: 28px;
+  }
+
+  .portada-h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 82px;
+    font-weight: 700;
+    color: var(--blanco);
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+
+  .portada-h1 em {
+    font-style: italic;
+    color: var(--acento2);
+    font-weight: 300;
+  }
+
+  .portada-servicio {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(255,255,255,0.38);
+    margin-bottom: 52px;
+    letter-spacing: 0.01em;
+  }
+
+  .portada-desc {
+    max-width: 560px;
+    font-size: 14.5px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.85;
+    font-weight: 300;
+    border-left: 1px solid var(--acento);
+    padding-left: 24px;
+  }
+
+  .portada-desc strong { color: rgba(255,255,255,0.78); font-weight: 400; }
+
+  .portada-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative; z-index: 2;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .portada-cliente-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.22);
+    margin-bottom: 5px;
+  }
+
+  .portada-cliente-nombre {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: rgba(255,255,255,0.65);
+  }
+
+  .portada-num {
+    font-family: 'Fraunces', serif;
+    font-size: 120px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.03);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    user-select: none;
+  }
+
+  /* ══ LAYOUT SECCIONES ══ */
+  .bloque {
+    padding: 80px 64px;
+  }
+
+  .bloque.alt { background: var(--blanco); }
+  .bloque.dark { background: var(--carbon); }
+  .bloque.acento-bg { background: var(--acento-bg); }
+
+  .sec-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 52px;
+  }
+
+  .sec-label-num {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--acento);
+  }
+
+  .sec-label-linea {
+    flex: 1;
+    height: 1px;
+    background: var(--borde);
+  }
+
+  .sec-label-texto {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gris);
+  }
+
+  .sec-titulo {
+    font-family: 'Fraunces', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--negro);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 36px;
+  }
+
+  .sec-titulo em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--acento);
+  }
+
+  .sec-titulo.inv { color: var(--blanco); }
+
+  /* ══ 01 CONTEXTO ══ */
+  .ctx-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 52px;
+  }
+
+  .ctx-intro p {
+    font-size: 14.5px;
+    color: var(--medio);
+    line-height: 1.9;
+    font-weight: 300;
+  }
+
+  .ctx-intro p strong { color: var(--negro); font-weight: 600; }
+
+  .ctx-intro p + p { margin-top: 16px; }
+
+  .ctx-quote {
+    background: var(--negro);
+    padding: 36px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 28px;
+  }
+
+  .ctx-quote-text {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--blanco);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  .ctx-quote-text em { color: var(--acento2); }
+
+  .ctx-quote-sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .pilares {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--borde);
+    margin-bottom: 52px;
+  }
+
+  .pilar {
+    background: var(--blanco);
+    padding: 28px 24px;
+  }
+
+  .pilar-ico { font-size: 22px; margin-bottom: 14px; }
+
+  .pilar-tit {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--negro);
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+
+  .pilar-txt { font-size: 12px; color: var(--gris); line-height: 1.6; font-weight: 300; }
+
+  .reto {
+    border: 1px solid var(--borde);
+    padding: 36px 40px;
+    background: var(--fondo);
+  }
+
+  .reto-titulo {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--acento);
+    margin-bottom: 24px;
+  }
+
+  .reto-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .reto-item {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: 12px;
+    font-size: 13.5px;
+    color: var(--medio);
+    line-height: 1.65;
+    font-weight: 300;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--borde);
+  }
+
+  .reto-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .reto-n {
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--acento);
+    line-height: 1.65;
+  }
+
+  /* ══ 02 JULIETH ══ */
+  .julieth-grid {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .julieth-card {
+    background: var(--negro);
+    padding: 40px 36px;
+    position: sticky;
+    top: 32px;
+  }
+
+  .julieth-initial {
+    font-family: 'Fraunces', serif;
+    font-size: 96px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+    margin-bottom: 28px;
+    letter-spacing: -0.04em;
+  }
+
+  .julieth-nombre {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--blanco);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+
+  .julieth-rol {
+    font-size: 12px;
+    color: var(--acento2);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  .julieth-cert {
+    background: rgba(200,153,90,0.12);
+    border: 1px solid rgba(200,153,90,0.25);
+    padding: 10px 14px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--acento2);
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  .julieth-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .j-stat {
+    padding: 16px 0;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .j-stat-val {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--blanco);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .j-stat-lab {
+    font-size: 10.5px;
+    color: rgba(255,255,255,0.3);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    margin-top: 3px;
+  }
+
+  .julieth-contenido {}
+
+  .j-perfil {
+    font-size: 15px;
+    color: var(--medio);
+    line-height: 1.9;
+    font-weight: 300;
+    margin-bottom: 48px;
+  }
+
+  .j-perfil strong { color: var(--negro); font-weight: 600; }
+  .j-perfil p + p { margin-top: 16px; }
+
+  .j-bloque-titulo {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--acento);
+    margin-bottom: 20px;
+  }
+
+  .j-comp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 48px;
+  }
+
+  .j-comp {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 12.5px;
+    color: var(--medio);
+    line-height: 1.5;
+    font-weight: 300;
+    padding: 12px 14px;
+    background: var(--fondo);
+    border: 1px solid var(--borde);
+  }
+
+  .j-comp-dot {
+    width: 4px; height: 4px;
+    background: var(--acento);
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+
+  .conexion-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--borde);
+    margin-top: 52px;
+  }
+
+  .con-card {
+    background: var(--fondo);
+    padding: 28px 24px;
+  }
+
+  .con-ico { font-size: 20px; margin-bottom: 12px; }
+
+  .con-tit {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--negro);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  .con-txt { font-size: 12px; color: var(--gris); line-height: 1.65; font-weight: 300; }
+
+  /* ══ 03 SERVICIO ══ */
+  .servicio-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 64px;
+    align-items: end;
+  }
+
+  .si-izq {
+    font-family: 'Fraunces', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--negro);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .si-izq em { font-style: italic; font-weight: 300; color: var(--acento); }
+
+  .si-der p {
+    font-size: 14px;
+    color: var(--medio);
+    line-height: 1.85;
+    font-weight: 300;
+  }
+
+  .si-der p + p { margin-top: 14px; }
+  .si-der p strong { color: var(--negro); font-weight: 600; }
+
+  /* CAPAS */
+  .capas-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gris);
+    margin-bottom: 2px;
+  }
+
+  .capas { display: flex; flex-direction: column; border: 1px solid var(--borde); }
+
+  .capa {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    border-bottom: 1px solid var(--borde);
+  }
+
+  .capa:last-child { border-bottom: none; }
+
+  .capa-izq {
+    padding: 28px 28px;
+    border-right: 1px solid var(--borde);
+    background: var(--fondo);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .capa-num {
+    font-family: 'Fraunces', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: rgba(0,0,0,0.06);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+
+  .capa-nombre {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--negro);
+    letter-spacing: -0.01em;
+    line-height: 1.35;
+    margin-bottom: 4px;
+  }
+
+  .capa-tag {
+    font-size: 10px;
+    color: var(--acento);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .capa-der {
+    padding: 28px 32px;
+    background: var(--blanco);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .capa-desc {
+    font-size: 13px;
+    color: var(--medio);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .capa-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .chip {
+    font-size: 11px;
+    padding: 4px 12px;
+    background: var(--fondo);
+    border: 1px solid var(--borde);
+    color: var(--medio);
+    font-weight: 400;
+  }
+
+  .chip.acc {
+    background: var(--negro);
+    border-color: var(--negro);
+    color: var(--acento2);
+    font-weight: 500;
+  }
+
+  /* PROCESO */
+  .proceso {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--borde);
+    margin-top: 64px;
+  }
+
+  .paso {
+    background: var(--blanco);
+    padding: 28px 24px;
+  }
+
+  .paso-n {
+    font-family: 'Fraunces', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: rgba(0,0,0,0.05);
+    line-height: 1;
+    margin-bottom: 14px;
+    letter-spacing: -0.03em;
+  }
+
+  .paso-tit {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--negro);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .paso-txt { font-size: 12px; color: var(--gris); line-height: 1.65; font-weight: 300; }
+
+  /* ENTREGABLES */
+  .ent-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--borde);
+    margin-top: 64px;
+  }
+
+  .ent {
+    background: var(--fondo);
+    padding: 28px 24px;
+  }
+
+  .ent-ico { font-size: 22px; margin-bottom: 14px; }
+
+  .ent-nom {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--negro);
+    margin-bottom: 7px;
+    letter-spacing: -0.01em;
+  }
+
+  .ent-txt { font-size: 12px; color: var(--gris); line-height: 1.6; font-weight: 300; }
+
+  /* ══ 04 INVERSIÓN ══ */
+  .inv-top {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 48px;
+    align-items: end;
+    margin-bottom: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .inv-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 10px;
+  }
+
+  .inv-valor {
+    font-family: 'Fraunces', serif;
+    font-size: 80px;
+    font-weight: 700;
+    color: var(--blanco);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .inv-sym {
+    font-size: 32px;
+    vertical-align: top;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .inv-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    font-weight: 300;
+    margin-top: 6px;
+    letter-spacing: 0.04em;
+  }
+
+  .inv-dur {
+    text-align: right;
+  }
+
+  .inv-dur-val {
+    font-family: 'Fraunces', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--acento2);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .inv-dur-lab {
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    margin-top: 4px;
+  }
+
+  /* TABLA */
+  .tabla {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 32px;
+  }
+
+  .tabla thead tr {
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .tabla th {
+    padding: 10px 16px;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+  }
+
+  .tabla tbody tr {
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .tabla tbody tr:hover { background: rgba(255,255,255,0.02); }
+
+  .tabla td {
+    padding: 18px 16px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    vertical-align: top;
+    font-weight: 300;
+  }
+
+  .tabla td:first-child { font-weight: 600; color: var(--blanco); font-size: 13px; }
+  .tabla td:last-child { text-align: right; font-weight: 600; color: var(--acento2); white-space: nowrap; }
+
+  .tabla tfoot tr { border-top: 1px solid rgba(200,153,90,0.3); }
+
+  .tabla tfoot td {
+    padding: 20px 16px;
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--blanco);
+  }
+
+  .tabla tfoot td:last-child {
+    color: var(--acento2);
+    font-size: 22px;
+  }
+
+  /* NOTA FINANCIERA */
+  .nota-fin {
+    background: rgba(200,153,90,0.08);
+    border: 1px solid rgba(200,153,90,0.2);
+    padding: 20px 24px;
+    margin-bottom: 36px;
+  }
+
+  .nota-fin p {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  .nota-fin p strong { color: rgba(255,255,255,0.8); font-weight: 500; }
+
+  /* PAGOS */
+  .pagos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .pago {
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 28px;
+    position: relative;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .pago.rec { border-color: var(--acento); background: rgba(200,153,90,0.04); }
+
+  .pago-badge {
+    position: absolute;
+    top: -10px; right: 16px;
+    background: var(--acento);
+    color: var(--negro);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 3px 12px;
+  }
+
+  .pago-tit {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--blanco);
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+
+  .pago-txt {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .pago-txt strong { color: rgba(255,255,255,0.75); font-weight: 500; }
+
+  /* ══ 05 CONDICIONES ══ */
+  .conds {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--borde);
+  }
+
+  .cond {
+    background: var(--blanco);
+    padding: 28px 24px;
+  }
+
+  .cond-tit {
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--negro);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .cond-txt {
+    font-size: 12px;
+    color: var(--gris);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  /* ══ CIERRE ══ */
+  .cierre {
+    background: var(--negro);
+    padding: 96px 64px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cierre::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,153,90,0.05) 0%, transparent 65%);
+  }
+
+  .cierre-pretitulo {
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--acento);
+    font-weight: 600;
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .cierre-titulo {
+    font-family: 'Fraunces', serif;
+    font-size: 52px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--blanco);
+    margin-bottom: 28px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    position: relative;
+  }
+
+  .cierre-titulo em { color: var(--acento2); font-style: normal; font-weight: 700; }
+
+  .cierre-texto {
+    color: rgba(255,255,255,0.38);
+    font-size: 14px;
+    font-weight: 300;
+    max-width: 520px;
+    margin: 0 auto 56px;
+    line-height: 1.9;
+    position: relative;
+  }
+
+  .cierre-nombre {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--blanco);
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+    position: relative;
+  }
+
+  .cierre-cargo {
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .cierre-contacto {
+    font-size: 13px;
+    color: rgba(255,255,255,0.35);
+    font-weight: 300;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  .cierre-validez {
+    display: inline-block;
+    border: 1px solid rgba(200,153,90,0.3);
+    color: rgba(200,153,90,0.7);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 10px 28px;
+    position: relative;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ PORTADA ══ -->
+<div class="portada">
+  <div class="portada-grain"></div>
+  <div class="portada-circle"></div>
+
+  <div class="portada-top">
+    <div class="portada-firma" style="display:flex; flex-direction:column; gap:4px;">
+      <div class="portada-marca">Julieth Rubio</div>
+      <div style="font-size:10px; color:rgba(255,255,255,0.35); font-weight:400; letter-spacing:0.1em;">Ingeniera Industrial · Risk Manager ISO 31000 · Consultoría Estratégica</div>
+      <div style="display:flex; align-items:center; gap:16px; margin-top:6px;">
+        <a href="tel:+573208103735" style="font-size:11px; color:rgba(255,255,255,0.3); text-decoration:none; letter-spacing:0.06em;" onmouseover="this.style.color='rgba(200,153,90,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.3)'">📱 320 810 3735</a>
+        <span style="color:rgba(255,255,255,0.1);">·</span>
+        <a href="https://www.linkedin.com/in/julieth-rubio-052490b0/" target="_blank" style="font-size:11px; color:rgba(255,255,255,0.3); text-decoration:none; letter-spacing:0.06em;" onmouseover="this.style.color='rgba(200,153,90,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.3)'">💼 LinkedIn</a>
+      </div>
+    </div>
+    <div class="portada-meta">Ref. TC-2026-001<br>Mayo 2026</div>
+  </div>
+
+  <div class="portada-mid">
+    <div class="portada-label">Propuesta de Consultoría Estratégica</div>
+    <div class="portada-h1">Tesoros<br>del <em>Catatumbo</em></div>
+    <div class="portada-servicio">Plano de Negocio: Diseño, Arquitectura y Procesos</div>
+    <div class="portada-desc">
+      Un acompañamiento estratégico para convertir una visión poderosa en un sistema comprensible, visual y ejecutable — el plano completo que la plataforma necesita <strong>antes de construir cualquier cosa.</strong>
+    </div>
+  </div>
+
+  <div class="portada-bottom">
+    <div>
+      <div class="portada-cliente-label">Preparado para</div>
+      <div class="portada-cliente-nombre">Tesoros del Catatumbo</div>
+    </div>
+    <div class="portada-num">TC</div>
+  </div>
+</div>
+
+
+<!-- ══ 01 CONTEXTO ══ -->
+<div class="bloque">
+  <div class="sec-label">
+    <div class="sec-label-num">01</div>
+    <div class="sec-label-linea"></div>
+    <div class="sec-label-texto">Entendimiento de la Iniciativa</div>
+  </div>
+
+  <div class="ctx-intro">
+    <div>
+      <p><strong>Tesoros del Catatumbo</strong> es una iniciativa de comercialización con propósito social que busca conectar comunidades productoras en condición de vulnerabilidad — agricultores, artesanos, herbolarias y actores culturales del territorio — con empresas, entidades gubernamentales y organizaciones del tercer sector.</p>
+      <p>La plataforma no es solo un canal de venta. Es un sistema que debe garantizar que cada transacción respete los valores, la cosmovisión y la autonomía de las comunidades. El comercio justo no es un adorno — es la columna vertebral del modelo.</p>
+    </div>
+    <div class="ctx-quote">
+      <div class="ctx-quote-text">La visión existe. Lo que se necesita ahora es <em>dibujar el plano</em> antes de construir.</div>
+      <div class="ctx-quote-sub">Punto de partida de esta consultoría</div>
+    </div>
+  </div>
+
+  <div class="pilares">
+    <div class="pilar">
+      <div class="pilar-ico">🌱</div>
+      <div class="pilar-tit">Comunidades Productoras</div>
+      <div class="pilar-txt">Agricultores, artesanos, herbolarias y actores culturales del Catatumbo que producen desde la tradición y el territorio.</div>
+    </div>
+    <div class="pilar">
+      <div class="pilar-ico">🏢</div>
+      <div class="pilar-tit">Compradores con Propósito</div>
+      <div class="pilar-txt">Empresas, entidades gubernamentales y ONG que adquieren bajo criterios éticos, sociales y de impacto territorial.</div>
+    </div>
+    <div class="pilar">
+      <div class="pilar-ico">⚖️</div>
+      <div class="pilar-tit">Valores que Gobiernan</div>
+      <div class="pilar-txt">Comercio justo, respeto cultural, trazabilidad e inclusión económica como criterios no negociables del sistema.</div>
+    </div>
+    <div class="pilar">
+      <div class="pilar-ico">📡</div>
+      <div class="pilar-tit">Plataforma Digital</div>
+      <div class="pilar-txt">Un ecosistema tecnológico que articula oferta, demanda, pagos, logística y medición de impacto.</div>
+    </div>
+  </div>
+
+  <div class="reto">
+    <div class="reto-titulo">Lo que se necesita responder antes de construir</div>
+    <div class="reto-lista">
+      <div class="reto-item"><div class="reto-n">01</div><div>¿Cómo vive el proceso un productor del Catatumbo desde su primer registro hasta que recibe su pago?</div></div>
+      <div class="reto-item"><div class="reto-n">02</div><div>¿Qué criterios concretos garantizan que cada transacción respeta los valores y la autonomía de la comunidad?</div></div>
+      <div class="reto-item"><div class="reto-n">03</div><div>¿Qué módulos tecnológicos necesita la plataforma y cómo se conectan entre sí?</div></div>
+      <div class="reto-item"><div class="reto-n">04</div><div>¿Cómo se administra internamente la plataforma y qué equipo la opera?</div></div>
+      <div class="reto-item"><div class="reto-n">05</div><div>¿Cómo se comunica todo esto a un inversionista o aliado estratégico en una primera reunión?</div></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ 02 JULIETH ══ -->
+<div class="bloque alt">
+  <div class="sec-label">
+    <div class="sec-label-num">02</div>
+    <div class="sec-label-linea"></div>
+    <div class="sec-label-texto">La Consultora</div>
+  </div>
+
+  <div class="julieth-grid">
+    <div class="julieth-card">
+      <div class="julieth-initial">JR</div>
+      <div class="julieth-nombre">Julieth<br>Rubio</div>
+      <div class="julieth-rol">Arquitecta de Negocio<br>& Consultora Estratégica</div>
+      <div class="julieth-cert">✦ Risk Manager<br>ISO 31000 · PECB</div>
+      <div class="julieth-cert" style="margin-top:8px;">✦ Coach PNL<br>& Biodescodificación</div>
+      <div class="julieth-cert" style="margin-top:8px;">✦ Neurociencia Aplicada<br>Neurobiología Relacional · Trauma</div>
+      <div class="julieth-stats">
+        <div class="j-stat">
+          <div class="j-stat-val">+10</div>
+          <div class="j-stat-lab">Años de experiencia</div>
+        </div>
+        <div class="j-stat">
+          <div class="j-stat-val">4</div>
+          <div class="j-stat-lab">Sectores: ONG · Financiero · Público · Tech</div>
+        </div>
+        <div class="j-stat">
+          <div class="j-stat-val">Ing.</div>
+          <div class="j-stat-lab">Industrial · Procesos & Riesgos</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="julieth-contenido">
+      <div class="j-perfil">
+        <p>Soy Ingeniera Industrial con más de 10 años de experiencia en el diseño e implementación de marcos de control operativo, gestión de riesgos y arquitectura de procesos en sectores como <strong>cooperación internacional, salud pública, finanzas y tecnología.</strong></p>
+        <p>Mi trabajo siempre ha estado en el mismo punto de intersección: <strong>traduzco ideas complejas en sistemas que funcionan.</strong> He liderado procesos de transformación organizacional, diseñado flujos operativos desde cero y construido marcos de gobierno que protegen tanto el negocio como las personas que lo habitan.</p>
+        <p>Integro pensamiento sistémico, metodologías ágiles, herramientas digitales e inteligencia artificial — y lo combino con mi formación en <strong>neurociencia aplicada, neurobiología relacional y coaching en PNL y biodescodificación</strong> para diseñar procesos que no solo funcionan sobre el papel: están construidos desde la comprensión profunda de las personas que los habitarán.</p>
+      </div>
+
+      <div class="j-bloque-titulo">Competencias clave para este proyecto</div>
+      <div class="j-comp-grid">
+        <div class="j-comp"><div class="j-comp-dot"></div>Arquitectura y diseño de procesos end-to-end</div>
+        <div class="j-comp"><div class="j-comp-dot"></div>Gestión de riesgos operativos y éticos (ISO 31000)</div>
+        <div class="j-comp"><div class="j-comp-dot"></div>Diseño de marcos de gobierno corporativo</div>
+        <div class="j-comp"><div class="j-comp-dot"></div>Experiencia con comunidades y ONG internacionales</div>
+        <div class="j-comp"><div class="j-comp-dot"></div>Neurociencia aplicada · Neurobiología relacional y trauma</div>
+        <div class="j-comp"><div class="j-comp-dot"></div>Coach PNL & Biodescodificación</div>
+        <div class="j-comp"><div class="j-comp-dot"></div>Modelado de indicadores de impacto y KPIs</div>
+        <div class="j-comp"><div class="j-comp-dot"></div>Metodologías ágiles · Scrum · Design Thinking</div>
+        <div class="j-comp"><div class="j-comp-dot"></div>Automatización con IA · Power BI · Tableros</div>
+        <div class="j-comp"><div class="j-comp-dot"></div>Gestión de stakeholders y reporting ejecutivo</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="conexion-strip">
+    <div class="con-card">
+      <div class="con-ico">🤝</div>
+      <div class="con-tit">Entiende el mundo de las comunidades</div>
+      <div class="con-txt">Ha trabajado directamente con comunidades vulnerables en territorios de Colombia bajo estándares de cooperación internacional, incluyendo salvaguarda y respeto cultural.</div>
+    </div>
+    <div class="con-card">
+      <div class="con-ico">⚙️</div>
+      <div class="con-tit">Traduce visiones en sistemas operativos</div>
+      <div class="con-txt">Su experiencia en diseño de procesos y marcos de gobierno le permite convertir una idea en un plano detallado que cualquier equipo puede ejecutar con precisión.</div>
+    </div>
+    <div class="con-card">
+      <div class="con-ico">🛡️</div>
+      <div class="con-tit">Incrusta los valores en el diseño</div>
+      <div class="con-txt">Como especialista en riesgos éticos y governance, garantiza que el comercio justo y la protección comunitaria sean parte del sistema — no solo del discurso.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ 03 SERVICIO ══ -->
+<div class="bloque">
+  <div class="sec-label">
+    <div class="sec-label-num">03</div>
+    <div class="sec-label-linea"></div>
+    <div class="sec-label-texto">El Servicio</div>
+  </div>
+
+  <div class="servicio-intro">
+    <div class="si-izq">Plano de Negocio:<br><em>Diseño, Arquitectura<br>y Procesos</em></div>
+    <div class="si-der">
+      <p>Ningún arquitecto construye sin antes dibujar cada detalle. Una plataforma digital con impacto social real necesita exactamente lo mismo: un plano riguroso que defina cómo funciona todo antes de invertir en tecnología.</p>
+      <p>Este servicio convierte la visión de Tesoros del Catatumbo en un <strong>sistema visual, claro y navegable</strong> — el documento maestro que permite entender la plataforma completa, presentarla con confianza y entregarla a un equipo de desarrollo sin improvisaciones.</p>
+    </div>
+  </div>
+
+  <div class="capas-label">Las 6 capas del plano</div>
+  <div class="capas">
+
+    <div class="capa">
+      <div class="capa-izq">
+        <div class="capa-num">01</div>
+        <div>
+          <div class="capa-nombre">Ecosistema: La Gran Fotografía</div>
+          <div class="capa-tag">Mapa de Actores</div>
+        </div>
+      </div>
+      <div class="capa-der">
+        <div class="capa-desc">Un mapa visual que muestra todos los participantes y cómo se conectan — no como lista, sino como sistema vivo donde se ve qué fluye entre cada actor: dinero, productos, información y confianza.</div>
+        <div class="capa-chips">
+          <span class="chip">Productores y comunidades</span>
+          <span class="chip">Compradores institucionales</span>
+          <span class="chip">Operadores</span>
+          <span class="chip">ONG y aliados</span>
+          <span class="chip acc">→ Mapa visual del ecosistema</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="capa">
+      <div class="capa-izq">
+        <div class="capa-num">02</div>
+        <div>
+          <div class="capa-nombre">El Viaje de Cada Actor</div>
+          <div class="capa-tag">Journey Maps</div>
+        </div>
+      </div>
+      <div class="capa-der">
+        <div class="capa-desc">El recorrido completo de cada persona dentro de la plataforma: desde el primer contacto hasta el cierre. ¿Cómo llega un productor a registrarse? ¿Cómo recibe su pago? ¿Qué vive un comprador desde que entra hasta que cierra su primer pedido? Esto se dibuja, no se narra.</div>
+        <div class="capa-chips">
+          <span class="chip">Journey productor</span>
+          <span class="chip">Journey comprador</span>
+          <span class="chip">Journey administrador</span>
+          <span class="chip">Puntos de fricción</span>
+          <span class="chip acc">→ Mapas de experiencia por actor</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="capa">
+      <div class="capa-izq">
+        <div class="capa-num">03</div>
+        <div>
+          <div class="capa-nombre">El Motor Interno</div>
+          <div class="capa-tag">Flujos de Proceso</div>
+        </div>
+      </div>
+      <div class="capa-der">
+        <div class="capa-desc">Cómo funciona la plataforma por dentro: qué pasos ocurren en cada operación, en qué orden, quién ejecuta cada uno. Cubre el ciclo completo: registro, validación, publicación, pedido, pago, entrega y evaluación.</div>
+        <div class="capa-chips">
+          <span class="chip">Onboarding</span>
+          <span class="chip">Publicación de producto</span>
+          <span class="chip">Compra y pago</span>
+          <span class="chip">Gestión de pedidos</span>
+          <span class="chip">Evaluación y cierre</span>
+          <span class="chip acc">→ Flujogramas detallados</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="capa">
+      <div class="capa-izq">
+        <div class="capa-num">04</div>
+        <div>
+          <div class="capa-nombre">Las Reglas del Juego</div>
+          <div class="capa-tag">Gobernanza Ética</div>
+        </div>
+      </div>
+      <div class="capa-der">
+        <div class="capa-desc">Las condiciones que gobiernan cada decisión. Aquí los valores de Tesoros del Catatumbo dejan de ser promesas y se convierten en criterios concretos incrustados en el sistema. Lo que se permite, lo que no, y cómo se protege la autonomía cultural.</div>
+        <div class="capa-chips">
+          <span class="chip">Criterios de admisión</span>
+          <span class="chip">Estándares éticos</span>
+          <span class="chip">Precios justos</span>
+          <span class="chip">Gestión de conflictos</span>
+          <span class="chip">Salvaguardas culturales</span>
+          <span class="chip acc">→ Documento de reglas de negocio</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="capa">
+      <div class="capa-izq">
+        <div class="capa-num">05</div>
+        <div>
+          <div class="capa-nombre">Los Bloques Tecnológicos</div>
+          <div class="capa-tag">Arquitectura Funcional</div>
+        </div>
+      </div>
+      <div class="capa-der">
+        <div class="capa-desc">El mapa de qué debe existir tecnológicamente para que todo funcione. No es código — es el lenguaje que le habla al equipo de desarrollo. Cada módulo con su propósito, entradas, salidas y conexiones.</div>
+        <div class="capa-chips">
+          <span class="chip">Registro y perfiles</span>
+          <span class="chip">Catálogo y búsqueda</span>
+          <span class="chip">Gestión de pedidos</span>
+          <span class="chip">Pagos y trazabilidad</span>
+          <span class="chip">Panel de impacto</span>
+          <span class="chip acc">→ Diagrama de arquitectura funcional</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="capa">
+      <div class="capa-izq">
+        <div class="capa-num">06</div>
+        <div>
+          <div class="capa-nombre">Cómo se Administra</div>
+          <div class="capa-tag">Gobernanza Operativa</div>
+        </div>
+      </div>
+      <div class="capa-der">
+        <div class="capa-desc">La estructura interna que opera la plataforma: roles, decisiones, indicadores de gestión y métricas de impacto social. Los números que demuestran que la plataforma cumple su propósito más allá del negocio.</div>
+        <div class="capa-chips">
+          <span class="chip">Estructura de roles</span>
+          <span class="chip">KPIs operativos</span>
+          <span class="chip">Métricas de impacto</span>
+          <span class="chip">Modelo de decisiones</span>
+          <span class="chip acc">→ Manual de gobernanza e impacto</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PROCESO -->
+  <div class="proceso">
+    <div class="paso">
+      <div class="paso-n">01</div>
+      <div class="paso-tit">Escucha Profunda</div>
+      <div class="paso-txt">Sesiones de inmersión para extraer y ordenar la visión completa. Se graba, se mapea, se pregunta lo que nadie ha preguntado aún.</div>
+    </div>
+    <div class="paso">
+      <div class="paso-n">02</div>
+      <div class="paso-tit">Diseño en Capas</div>
+      <div class="paso-txt">El plano se construye capa por capa, de lo estratégico al detalle operativo. Cada capa se valida antes de avanzar.</div>
+    </div>
+    <div class="paso">
+      <div class="paso-n">03</div>
+      <div class="paso-tit">Revisión Iterativa</div>
+      <div class="paso-txt">Cada entregable se revisa con la fundadora. Lo que no resuena se ajusta. El plano debe ser completamente reconocible como suyo.</div>
+    </div>
+    <div class="paso">
+      <div class="paso-n">04</div>
+      <div class="paso-tit">Entrega y Traspaso</div>
+      <div class="paso-txt">Documentos editables y sesión de cierre donde la fundadora puede explicar cada parte del plano con total confianza.</div>
+    </div>
+  </div>
+
+  <!-- ENTREGABLES -->
+  <div class="ent-grid">
+    <div class="ent">
+      <div class="ent-ico">🗺️</div>
+      <div class="ent-nom">Mapa del Ecosistema</div>
+      <div class="ent-txt">Visualización completa de actores, roles y flujos. La foto más amplia de la plataforma.</div>
+    </div>
+    <div class="ent">
+      <div class="ent-ico">🧭</div>
+      <div class="ent-nom">Journey Maps por Actor</div>
+      <div class="ent-txt">El viaje completo de cada usuario — productor, comprador, administrador.</div>
+    </div>
+    <div class="ent">
+      <div class="ent-ico">⚙️</div>
+      <div class="ent-nom">Flujogramas de Proceso</div>
+      <div class="ent-txt">Diagramas detallados de cada proceso operativo de la plataforma.</div>
+    </div>
+    <div class="ent">
+      <div class="ent-ico">📋</div>
+      <div class="ent-nom">Reglas de Negocio</div>
+      <div class="ent-txt">Criterios y políticas con salvaguardas éticas y culturales integradas.</div>
+    </div>
+    <div class="ent">
+      <div class="ent-ico">🏗️</div>
+      <div class="ent-nom">Arquitectura Funcional</div>
+      <div class="ent-txt">Mapa de módulos tecnológicos con entradas, salidas y conexiones.</div>
+    </div>
+    <div class="ent">
+      <div class="ent-ico">📊</div>
+      <div class="ent-nom">Gobernanza e Impacto</div>
+      <div class="ent-txt">Roles operativos, KPIs y métricas de impacto social medibles.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ 04 INVERSIÓN ══ -->
+<style>
+  /* Estilos adicionales para la nueva sección de inversión */
+  .inv-hero {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 48px;
+    padding-bottom: 52px;
+    margin-bottom: 52px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .inv-pretitulo {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--acento);
+    margin-bottom: 14px;
+  }
+
+  .inv-numero {
+    font-family: 'Fraunces', serif;
+    font-size: 88px;
+    font-weight: 700;
+    color: var(--blanco);
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+  }
+
+  .inv-numero sup {
+    font-size: 36px;
+    vertical-align: top;
+    line-height: 1.4;
+    font-weight: 300;
+  }
+
+  .inv-moneda-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    margin-top: 10px;
+  }
+
+  .inv-contexto {
+    max-width: 340px;
+    text-align: right;
+  }
+
+  .inv-contexto p {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.85;
+    font-weight: 300;
+  }
+
+  .inv-contexto p strong { color: rgba(255,255,255,0.75); font-weight: 500; }
+
+  /* COMPONENTES */
+  .componentes-titulo {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    margin-bottom: 20px;
+  }
+
+  .componentes {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 52px;
+  }
+
+  .comp-item {
+    display: grid;
+    grid-template-columns: 28px 1fr auto;
+    gap: 20px;
+    align-items: start;
+    padding: 22px 24px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.2s;
+  }
+
+  .comp-item:hover { background: rgba(255,255,255,0.05); }
+
+  .comp-n {
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--acento);
+    padding-top: 1px;
+  }
+
+  .comp-contenido {}
+
+  .comp-nombre {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--blanco);
+    margin-bottom: 5px;
+    letter-spacing: -0.01em;
+  }
+
+  .comp-desc {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .comp-check {
+    color: var(--acento);
+    font-size: 16px;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  /* NOTA */
+  .inv-nota {
+    background: rgba(200,153,90,0.07);
+    border: 1px solid rgba(200,153,90,0.18);
+    padding: 20px 26px;
+    margin-bottom: 52px;
+  }
+
+  .inv-nota p {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .inv-nota p strong { color: rgba(255,255,255,0.7); font-weight: 500; }
+
+  /* PAGOS */
+  .pagos-titulo {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    margin-bottom: 20px;
+  }
+
+  .pagos-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .pago-nuevo {
+    border: 1px solid rgba(255,255,255,0.07);
+    padding: 32px 28px;
+    position: relative;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .pago-nuevo.rec {
+    border-color: var(--acento);
+    background: rgba(200,153,90,0.04);
+  }
+
+  .pago-badge-nuevo {
+    position: absolute;
+    top: -10px; right: 18px;
+    background: var(--acento);
+    color: var(--negro);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 3px 14px;
+  }
+
+  .pago-nuevo-letra {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--acento);
+    margin-bottom: 10px;
+  }
+
+  .pago-nuevo-tit {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--blanco);
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    line-height: 1.1;
+  }
+
+  .pago-hito {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .pago-hito:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .pago-hito-izq {}
+
+  .pago-hito-momento {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.06em;
+    margin-bottom: 3px;
+  }
+
+  .pago-hito-desc {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .pago-hito-valor {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--acento2);
+    white-space: nowrap;
+    letter-spacing: -0.01em;
+  }
+
+  .pago-unico-valor {
+    font-family: 'Fraunces', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--blanco);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .pago-unico-desc {
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  .pago-unico-ahorro {
+    display: inline-block;
+    background: rgba(200,153,90,0.15);
+    border: 1px solid rgba(200,153,90,0.25);
+    color: var(--acento2);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    margin-top: 14px;
+  }
+</style>
+
+<div class="bloque dark">
+  <div class="sec-label">
+    <div class="sec-label-num" style="color:var(--acento)">04</div>
+    <div class="sec-label-linea" style="background:rgba(255,255,255,0.08)"></div>
+    <div class="sec-label-texto" style="color:rgba(255,255,255,0.3)">Propuesta Económica</div>
+  </div>
+
+  <!-- INTRO INVERSIÓN -->
+  <div style="margin-bottom:52px; padding-bottom:52px; border-bottom:1px solid rgba(255,255,255,0.07);">
+    <p style="font-size:15px; color:rgba(255,255,255,0.55); line-height:1.9; font-weight:300; max-width:720px; margin-bottom:24px;">No estás contratando horas — estás contratando <strong style="color:rgba(255,255,255,0.8); font-weight:500;">criterio, presencia y 10 años de experiencia</strong> concentrados en construir el plano que tu plataforma necesita para arrancar sin improvisaciones.</p>
+    <div style="background:rgba(200,153,90,0.07); border:1px solid rgba(200,153,90,0.2); padding:18px 24px;">
+      <div style="font-size:10px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--acento); margin-bottom:8px;">Nota importante</div>
+      <p style="font-size:12.5px; color:rgba(255,255,255,0.45); line-height:1.8; font-weight:300;">Los valores presentados en esta propuesta son <strong style="color:rgba(255,255,255,0.7); font-weight:500;">referencias tentativas</strong> y podrán ajustarse una vez se dimensione con precisión el alcance real del proyecto. El valor definitivo será acordado entre las partes antes de iniciar el proceso.</p>
+    </div>
+  </div>
+
+  <!-- 3 PAQUETES -->
+  <div style="font-size:10px; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; color:rgba(255,255,255,0.25); margin-bottom:20px;">Paquetes disponibles</div>
+
+  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:rgba(255,255,255,0.05); margin-bottom:52px;">
+
+    <!-- PAQUETE 1 -->
+    <div style="background:var(--carbon); padding:36px 28px; display:flex; flex-direction:column; gap:0;">
+      <div style="font-size:10px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--acento); margin-bottom:16px;">Paquete 01</div>
+      <div style="font-family:'Fraunces',serif; font-size:26px; font-weight:700; color:var(--blanco); letter-spacing:-0.02em; margin-bottom:8px; line-height:1.1;">Exploración</div>
+      <div style="font-size:12px; color:rgba(255,255,255,0.35); font-weight:300; margin-bottom:28px; line-height:1.6;">Para quien quiere aterrizar la idea y tener claridad antes de comprometerse con el proceso completo.</div>
+      <div style="display:flex; flex-direction:column; gap:10px; flex:1;">
+        <div style="display:flex; gap:10px; align-items:flex-start; font-size:12px; color:rgba(255,255,255,0.5); line-height:1.5; font-weight:300;"><span style="color:var(--acento); flex-shrink:0; margin-top:1px;">→</span>2 sesiones de diagnóstico y escucha activa</div>
+        <div style="display:flex; gap:10px; align-items:flex-start; font-size:12px; color:rgba(255,255,255,0.5); line-height:1.5; font-weight:300;"><span style="color:var(--acento); flex-shrink:0; margin-top:1px;">→</span>Mapa inicial del ecosistema</div>
+        <div style="display:flex; gap:10px; align-items:flex-start; font-size:12px; color:rgba(255,255,255,0.5); line-height:1.5; font-weight:300;"><span style="color:var(--acento); flex-shrink:0; margin-top:1px;">→</span>Identificación de vacíos y preguntas clave</div>
+        <div style="display:flex; gap:10px; align-items:flex-start; font-size:12px; color:rgba(255,255,255,0.5); line-height:1.5; font-weight:300;"><span style="color:var(--acento); flex-shrink:0; margin-top:1px;">→</span>Documento de síntesis de la visión</div>
+      </div>
+      <div style="margin-top:32px; padding-top:24px; border-top:1px solid rgba(255,255,255,0.07);">
+        <div style="font-family:'Fraunces',serif; font-size:36px; font-weight:700; color:var(--blanco); letter-spacing:-0.02em; line-height:1;">$2.000.000</div>
+        <div style="font-size:10px; color:rgba(255,255,255,0.25); font-weight:300; margin-top:5px; letter-spacing:0.06em;">$200.000 / hora · ref.</div>
+      </div>
+    </div>
+
+    <!-- PAQUETE 2 -->
+    <div style="background:var(--grafito); padding:36px 28px; display:flex; flex-direction:column; gap:0;">
+      <div style="font-size:10px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--acento); margin-bottom:16px;">Paquete 02</div>
+      <div style="font-family:'Fraunces',serif; font-size:26px; font-weight:700; color:var(--blanco); letter-spacing:-0.02em; margin-bottom:8px; line-height:1.1;">Arquitectura</div>
+      <div style="font-size:12px; color:rgba(255,255,255,0.35); font-weight:300; margin-bottom:28px; line-height:1.6;">Para quien ya tiene claridad y quiere construir el plano operativo completo de su plataforma.</div>
+      <div style="display:flex; flex-direction:column; gap:10px; flex:1;">
+        <div style="display:flex; gap:10px; align-items:flex-start; font-size:12px; color:rgba(255,255,255,0.5); line-height:1.5; font-weight:300;"><span style="color:var(--acento); flex-shrink:0; margin-top:1px;">→</span>Todo lo del Paquete Exploración</div>
+        <div style="display:flex; gap:10px; align-items:flex-start; font-size:12px; color:rgba(255,255,255,0.5); line-height:1.5; font-weight:300;"><span style="color:var(--acento); flex-shrink:0; margin-top:1px;">→</span>Journey maps de cada actor</div>
+        <div style="display:flex; gap:10px; align-items:flex-start; font-size:12px; color:rgba(255,255,255,0.5); line-height:1.5; font-weight:300;"><span style="color:var(--acento); flex-shrink:0; margin-top:1px;">→</span>Flujos de proceso end-to-end</div>
+        <div style="display:flex; gap:10px; align-items:flex-start; font-size:12px; color:rgba(255,255,255,0.5); line-height:1.5; font-weight:300;"><span style="color:var(--acento); flex-shrink:0; margin-top:1px;">→</span>Reglas de negocio y gobernanza ética</div>
+        <div style="display:flex; gap:10px; align-items:flex-start; font-size:12px; color:rgba(255,255,255,0.5); line-height:1.5; font-weight:300;"><span style="color:var(--acento); flex-shrink:0; margin-top:1px;">→</span>Arquitectura funcional de módulos</div>
+      </div>
+      <div style="margin-top:32px; padding-top:24px; border-top:1px solid rgba(255,255,255,0.07);">
+        <div style="font-family:'Fraunces',serif; font-size:36px; font-weight:700; color:var(--blanco); letter-spacing:-0.02em; line-height:1;">$5.000.000</div>
+        <div style="font-size:10px; color:rgba(255,255,255,0.25); font-weight:300; margin-top:5px; letter-spacing:0.06em;">$200.000 / hora · ref.</div>
+      </div>
+    </div>
+
+    <!-- PAQUETE 3 -->
+    <div style="background:var(--negro); border:1px solid var(--acento); padding:36px 28px; display:flex; flex-direction:column; gap:0; position:relative;">
+      <div style="position:absolute; top:-10px; right:18px; background:var(--acento); color:var(--negro); font-size:9px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; padding:3px 14px;">Recomendado</div>
+      <div style="font-size:10px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--acento); margin-bottom:16px;">Paquete 03</div>
+      <div style="font-family:'Fraunces',serif; font-size:26px; font-weight:700; color:var(--blanco); letter-spacing:-0.02em; margin-bottom:8px; line-height:1.1;">Plano Completo</div>
+      <div style="font-size:12px; color:rgba(255,255,255,0.35); font-weight:300; margin-bottom:28px; line-height:1.6;">Acompañamiento integral desde la visión hasta estar listos para inversionistas y equipo de desarrollo.</div>
+      <div style="display:flex; flex-direction:column; gap:10px; flex:1;">
+        <div style="display:flex; gap:10px; align-items:flex-start; font-size:12px; color:rgba(255,255,255,0.5); line-height:1.5; font-weight:300;"><span style="color:var(--acento); flex-shrink:0; margin-top:1px;">→</span>Todo lo del Paquete Arquitectura</div>
+        <div style="display:flex; gap:10px; align-items:flex-start; font-size:12px; color:rgba(255,255,255,0.5); line-height:1.5; font-weight:300;"><span style="color:var(--acento); flex-shrink:0; margin-top:1px;">→</span>Modelo de gobernanza operativa</div>
+        <div style="display:flex; gap:10px; align-items:flex-start; font-size:12px; color:rgba(255,255,255,0.5); line-height:1.5; font-weight:300;"><span style="color:var(--acento); flex-shrink:0; margin-top:1px;">→</span>Métricas de impacto social</div>
+        <div style="display:flex; gap:10px; align-items:flex-start; font-size:12px; color:rgba(255,255,255,0.5); line-height:1.5; font-weight:300;"><span style="color:var(--acento); flex-shrink:0; margin-top:1px;">→</span>Narrativa y preparación para inversionistas</div>
+        <div style="display:flex; gap:10px; align-items:flex-start; font-size:12px; color:rgba(255,255,255,0.5); line-height:1.5; font-weight:300;"><span style="color:var(--acento); flex-shrink:0; margin-top:1px;">→</span>Sesión de traspaso y cierre</div>
+        <div style="display:flex; gap:10px; align-items:flex-start; font-size:12px; color:rgba(255,255,255,0.5); line-height:1.5; font-weight:300;"><span style="color:var(--acento); flex-shrink:0; margin-top:1px;">→</span>Disponibilidad para dudas durante todo el proceso</div>
+      </div>
+      <div style="margin-top:32px; padding-top:24px; border-top:1px solid rgba(255,255,255,0.1);">
+        <div style="font-family:'Fraunces',serif; font-size:36px; font-weight:700; color:var(--acento2); letter-spacing:-0.02em; line-height:1;">$6.000.000</div>
+        <div style="font-size:10px; color:rgba(255,255,255,0.25); font-weight:300; margin-top:5px; letter-spacing:0.06em;">$200.000 / hora · ref.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- NOTA FINANCIERA -->
+  <div class="inv-nota" style="margin-bottom:20px;">
+    <p><strong>Nota sobre el componente financiero:</strong> La construcción del modelo financiero en cifras requiere un perfil especializado. Este servicio entrega el <strong>esqueleto financiero</strong> del modelo — fuentes de ingreso, estructura de costos y variables clave — listo para ser desarrollado en números por un contador o consultor financiero. Puedo facilitar esa conexión si se necesita.</p>
+  </div>
+
+  <!-- NOTA ACUERDOS -->
+  <div style="border:1px solid rgba(255,255,255,0.07); padding:32px 36px; background:rgba(255,255,255,0.02);">
+    <div style="font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--acento); margin-bottom:14px;">Acuerdos de pago</div>
+    <p style="font-size:14px; color:rgba(255,255,255,0.5); line-height:1.9; font-weight:300; max-width:680px;">Estoy abierta a conversar sobre la modalidad que mejor se adapte a tu momento. Podemos explorar un acuerdo <strong style="color:rgba(255,255,255,0.75); font-weight:500;">50% al inicio y 50% al finalizar</strong>, un descuento por pago total al inicio, o un plan por paquete de horas según el avance del proyecto. Lo importante es que el acuerdo funcione para ambas partes.</p>
+  </div>
+</div>
+
+
+<!-- ══ 05 CONDICIONES ══ -->
+<div class="bloque">
+  <div class="sec-label">
+    <div class="sec-label-num">05</div>
+    <div class="sec-label-linea"></div>
+    <div class="sec-label-texto">Condiciones del Servicio</div>
+  </div>
+
+  <div class="conds">
+    <div class="cond">
+      <div class="cond-tit">📅 Inicio</div>
+      <div class="cond-txt">El servicio inicia una vez se formalice la aceptación y se reciba el primer pago según la modalidad elegida.</div>
+    </div>
+    <div class="cond">
+      <div class="cond-tit">🕐 Modalidad</div>
+      <div class="cond-txt">Sesiones sincrónicas semanales más revisiones asincrónicas por correo y mensajería a lo largo del proceso.</div>
+    </div>
+    <div class="cond">
+      <div class="cond-tit">🔄 Revisiones</div>
+      <div class="cond-txt">Cada entregable incluye hasta <strong>2 rondas de ajuste</strong> sin costo adicional. Cambios de alcance se cotizan aparte.</div>
+    </div>
+    <div class="cond">
+      <div class="cond-tit">📁 Propiedad</div>
+      <div class="cond-txt">Una vez saldado el valor total, todos los documentos son propiedad exclusiva de Tesoros del Catatumbo.</div>
+    </div>
+    <div class="cond">
+      <div class="cond-tit">🤝 Confidencialidad</div>
+      <div class="cond-txt">Toda la información compartida será tratada con absoluta reserva y no se divulgará a terceros.</div>
+    </div>
+    <div class="cond">
+      <div class="cond-tit">⏳ Vigencia</div>
+      <div class="cond-txt">Esta propuesta tiene validez de <strong>20 días calendario</strong> desde su emisión. Pasado ese plazo, los valores pueden revisarse.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ CIERRE ══ -->
+<div class="cierre">
+  <div class="cierre-pretitulo">Un compromiso con lo que importa</div>
+  <div class="cierre-titulo">Construyamos el plano <em>juntas.</em></div>
+  <p class="cierre-texto">Tesoros del Catatumbo tiene una visión que merece ser construida con rigor y con un sistema que proteja lo más importante: las comunidades detrás. Mi compromiso es que al finalizar, la plataforma tenga una base tan sólida que pueda crecer con confianza.</p>
+  <div class="cierre-nombre">Julieth Rubio</div>
+  <div class="cierre-cargo">Consultora Estratégica · Arquitectura de Negocio & Procesos</div>
+  <div class="cierre-contacto">
+    <a href="mailto:juliethrubio07@icloud.com" style="color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='rgba(200,153,90,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">📧 juliethrubio07@icloud.com</a>
+    <span style="color:rgba(255,255,255,0.15); margin:0 10px;">·</span>
+    <a href="tel:+573208103735" style="color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='rgba(200,153,90,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">📱 320 810 3735</a>
+    <span style="color:rgba(255,255,255,0.15); margin:0 10px;">·</span>
+    <a href="https://www.linkedin.com/in/julieth-rubio-052490b0/" target="_blank" style="color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='rgba(200,153,90,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">💼 LinkedIn</a>
+  </div>
+  <div class="cierre-validez">Propuesta válida por 20 días · Mayo 2026</div>
+</div>
+
+</body>
+</html>
