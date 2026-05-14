@@ -1084,6 +1084,41 @@
   /* ══ RESPONSIVE MÓVIL ══ */
   @media (max-width: 768px) {
 
+    /* CAPAS — mostrar nombre visible en móvil */
+    .capa {
+      grid-template-columns: 1fr !important;
+    }
+
+    .capa-izq {
+      border-right: none;
+      border-bottom: 1px solid var(--borde);
+      padding: 16px 20px;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 14px;
+    }
+
+    .capa-num {
+      font-size: 28px;
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+
+    .capa-nombre {
+      font-size: 14px;
+    }
+
+    .capa-tag {
+      font-size: 9px;
+    }
+
+    .capa-der {
+      padding: 20px 20px;
+    }
+
+
+
     /* PORTADA */
     .portada {
       padding: 36px 28px;
