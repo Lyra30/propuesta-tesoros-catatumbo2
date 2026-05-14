@@ -1080,6 +1080,162 @@
     padding: 10px 28px;
     position: relative;
   }
+
+  /* ══ RESPONSIVE MÓVIL ══ */
+  @media (max-width: 768px) {
+
+    /* PORTADA */
+    .portada {
+      padding: 36px 28px;
+      min-height: 100svh;
+    }
+
+    .portada-abstracta {
+      width: 100%;
+      opacity: 0.08;
+    }
+
+    .portada-h1 {
+      font-size: 52px;
+    }
+
+    .portada-subtitulo {
+      font-size: 16px;
+    }
+
+    .portada-desc {
+      font-size: 13px;
+    }
+
+    .portada-top {
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .portada-meta { text-align: left; }
+
+    /* BLOQUES */
+    .bloque {
+      padding: 48px 24px;
+    }
+
+    /* SECCIÓN HEADERS */
+    .sec-num { font-size: 48px; }
+    .sec-titulo { font-size: 28px; }
+
+    /* CONTEXTO */
+    .ctx-intro {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .pilares {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* JULIETH */
+    .julieth-grid {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+
+    .julieth-card {
+      position: static;
+    }
+
+    .julieth-nombre { font-size: 36px; }
+
+    .julieth-stats {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+
+    .j-stat {
+      flex: 1;
+      min-width: 100px;
+      padding: 12px 8px;
+    }
+
+    .j-stat-val { font-size: 24px; }
+
+    .j-comp-grid {
+      grid-template-columns: 1fr;
+    }
+
+    /* CONEXION */
+    .conexion-strip {
+      grid-template-columns: 1fr;
+    }
+
+    /* SERVICIO */
+    .servicio-intro {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .si-izq { font-size: 28px; }
+
+    /* CAPAS */
+    .capa {
+      grid-template-columns: 36px 1fr;
+    }
+
+    .capa-num { font-size: 28px; }
+
+    /* PROCESO */
+    .proceso {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* ENTREGABLES */
+    .ent-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* INVERSIÓN */
+    .inv-numero { font-size: 56px; }
+    .inv-numero sup { font-size: 24px; }
+
+    /* ALIADOS */
+    .aliados-grid {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* CONDICIONES */
+    .conds {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* CIERRE */
+    .cierre {
+      padding: 56px 28px;
+    }
+
+    .cierre-titulo { font-size: 32px; }
+
+    .cierre-contacto {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .cierre-contacto span { display: none; }
+  }
+
+  @media (max-width: 480px) {
+    .portada-h1 { font-size: 40px; }
+    .pilares { grid-template-columns: 1fr; }
+    .proceso { grid-template-columns: 1fr; }
+    .ent-grid { grid-template-columns: 1fr; }
+    .conds { grid-template-columns: 1fr; }
+    .pagos-grid { grid-template-columns: 1fr !important; }
+    .sec-titulo { font-size: 24px; }
+    .capa { grid-template-columns: 28px 1fr; }
+    .julieth-stats { flex-direction: column; }
+  }
 </style>
 </head>
 <body>
@@ -1910,7 +2066,7 @@
     <div class="sec-label-texto" style="color:rgba(255,255,255,0.3)">Aliados Estratégicos</div>
   </div>
 
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+  <div class="aliados-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
 
     <!-- TARJETA ZALENTO -->
     <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); padding:36px 32px; display:flex; flex-direction:column; align-items:flex-start; gap:24px;">
