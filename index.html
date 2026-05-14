@@ -48,6 +48,7 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
     opacity: 0.4;
     pointer-events: none;
+    z-index: 1;
   }
 
   .portada-circle {
@@ -57,6 +58,95 @@
     background: radial-gradient(circle, rgba(200,153,90,0.07) 0%, transparent 70%);
     bottom: -200px; right: -150px;
     pointer-events: none;
+    z-index: 1;
+  }
+
+  /* CANVAS ANIMADO */
+  .portada-canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* IMAGEN ABSTRACTA PORTADA */
+  .portada-abstracta {
+    position: absolute;
+    right: 0; top: 0;
+    width: 52%; height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .portada-abstracta svg {
+    width: 100%; height: 100%;
+    opacity: 0.18;
+  }
+
+  /* ORBES FLOTANTES */
+  @keyframes float1 {
+    0%, 100% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -20px) scale(1.05); }
+    66% { transform: translate(-20px, 15px) scale(0.97); }
+  }
+
+  @keyframes float2 {
+    0%, 100% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(-25px, 20px) scale(1.03); }
+    66% { transform: translate(20px, -25px) scale(0.98); }
+  }
+
+  @keyframes float3 {
+    0%, 100% { transform: translate(0px, 0px) scale(1); }
+    50% { transform: translate(15px, 30px) scale(1.04); }
+  }
+
+  @keyframes drift {
+    0% { transform: translateX(0) translateY(0); }
+    25% { transform: translateX(40px) translateY(-30px); }
+    50% { transform: translateX(20px) translateY(40px); }
+    75% { transform: translateX(-30px) translateY(10px); }
+    100% { transform: translateX(0) translateY(0); }
+  }
+
+  .orbe {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(60px);
+  }
+
+  .orbe-1 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(200,153,90,0.12) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    animation: float1 18s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  .orbe-2 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(100,80,40,0.1) 0%, transparent 70%);
+    bottom: -80px; left: 10%;
+    animation: float2 22s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  .orbe-3 {
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(200,153,90,0.07) 0%, transparent 70%);
+    top: 40%; left: 30%;
+    animation: float3 15s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  /* LÍNEAS ANIMADAS */
+  @keyframes lineDrift {
+    0% { stroke-dashoffset: 1000; opacity: 0; }
+    10% { opacity: 0.3; }
+    90% { opacity: 0.3; }
+    100% { stroke-dashoffset: 0; opacity: 0; }
   }
 
   .portada-top {
@@ -997,6 +1087,97 @@
 <!-- ══ PORTADA ══ -->
 <div class="portada">
   <div class="portada-grain"></div>
+
+  <!-- ORBES ANIMADOS -->
+  <div class="orbe orbe-1"></div>
+  <div class="orbe orbe-2"></div>
+  <div class="orbe orbe-3"></div>
+
+  <!-- IMAGEN ABSTRACTA -->
+  <div class="portada-abstracta">
+    <svg viewBox="0 0 800 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <radialGradient id="rg1" cx="60%" cy="40%" r="60%">
+          <stop offset="0%" stop-color="#C8995A" stop-opacity="0.6"/>
+          <stop offset="100%" stop-color="#0E0E0E" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="rg2" cx="30%" cy="70%" r="50%">
+          <stop offset="0%" stop-color="#8B6A3A" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#0E0E0E" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="blur1"><feGaussianBlur stdDeviation="8"/></filter>
+        <filter id="blur2"><feGaussianBlur stdDeviation="3"/></filter>
+      </defs>
+
+      <!-- Fondo base -->
+      <rect width="800" height="900" fill="url(#rg1)" filter="url(#blur1)"/>
+      <rect width="800" height="900" fill="url(#rg2)" filter="url(#blur1)"/>
+
+      <!-- Formas orgánicas -->
+      <path d="M400,100 C520,80 650,180 680,320 C710,460 620,580 500,600 C380,620 260,540 220,400 C180,260 280,120 400,100 Z"
+        fill="none" stroke="#C8995A" stroke-width="0.8" opacity="0.5" filter="url(#blur2)">
+        <animateTransform attributeName="transform" type="rotate" from="0 400 400" to="360 400 400" dur="60s" repeatCount="indefinite"/>
+      </path>
+
+      <path d="M350,150 C480,100 620,200 650,360 C680,520 570,640 420,650 C270,660 160,540 150,380 C140,220 220,200 350,150 Z"
+        fill="none" stroke="#D4A843" stroke-width="0.5" opacity="0.35">
+        <animateTransform attributeName="transform" type="rotate" from="360 400 400" to="0 400 400" dur="45s" repeatCount="indefinite"/>
+      </path>
+
+      <!-- Líneas finas -->
+      <line x1="0" y1="200" x2="800" y2="350" stroke="#C8995A" stroke-width="0.4" opacity="0.2" stroke-dasharray="8 16">
+        <animate attributeName="stroke-dashoffset" from="0" to="48" dur="8s" repeatCount="indefinite"/>
+      </line>
+      <line x1="0" y1="400" x2="800" y2="520" stroke="#C8995A" stroke-width="0.3" opacity="0.15" stroke-dasharray="6 20">
+        <animate attributeName="stroke-dashoffset" from="48" to="0" dur="12s" repeatCount="indefinite"/>
+      </line>
+      <line x1="0" y1="600" x2="800" y2="700" stroke="#D4A843" stroke-width="0.3" opacity="0.12" stroke-dasharray="10 24">
+        <animate attributeName="stroke-dashoffset" from="0" to="68" dur="10s" repeatCount="indefinite"/>
+      </line>
+
+      <!-- Círculos concéntricos -->
+      <circle cx="600" cy="300" r="180" fill="none" stroke="#C8995A" stroke-width="0.5" opacity="0.25">
+        <animate attributeName="r" values="180;200;180" dur="8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.25;0.1;0.25" dur="8s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="600" cy="300" r="120" fill="none" stroke="#D4A843" stroke-width="0.4" opacity="0.2">
+        <animate attributeName="r" values="120;135;120" dur="6s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="600" cy="300" r="60" fill="none" stroke="#C8995A" stroke-width="0.6" opacity="0.3">
+        <animate attributeName="r" values="60;70;60" dur="5s" repeatCount="indefinite"/>
+      </circle>
+
+      <!-- Puntos flotantes -->
+      <circle cx="200" cy="200" r="2" fill="#C8995A" opacity="0.4">
+        <animate attributeName="cy" values="200;180;200" dur="7s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.4;0.1;0.4" dur="7s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="500" cy="500" r="1.5" fill="#D4A843" opacity="0.35">
+        <animate attributeName="cy" values="500;480;500" dur="9s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="700" cy="150" r="1" fill="#C8995A" opacity="0.3">
+        <animate attributeName="cy" values="150;130;150" dur="5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="100" cy="700" r="2" fill="#D4A843" opacity="0.25">
+        <animate attributeName="cx" values="100;120;100" dur="11s" repeatCount="indefinite"/>
+      </circle>
+
+      <!-- Gradiente de fusión con el negro -->
+      <defs>
+        <linearGradient id="fade-left" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#0E0E0E" stop-opacity="1"/>
+          <stop offset="40%" stop-color="#0E0E0E" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="fade-bottom" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="60%" stop-color="#0E0E0E" stop-opacity="0"/>
+          <stop offset="100%" stop-color="#0E0E0E" stop-opacity="1"/>
+        </linearGradient>
+      </defs>
+      <rect width="800" height="900" fill="url(#fade-left)"/>
+      <rect width="800" height="900" fill="url(#fade-bottom)"/>
+    </svg>
+  </div>
+
   <div class="portada-circle"></div>
 
   <div class="portada-top">
@@ -1159,7 +1340,6 @@
     </div>
   </div>
 </div>
-
 
 <!-- ══ 03 SERVICIO ══ -->
 <div class="bloque">
@@ -1718,6 +1898,77 @@
   <div style="border:1px solid rgba(255,255,255,0.07); padding:32px 36px; background:rgba(255,255,255,0.02);">
     <div style="font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--acento); margin-bottom:14px;">Acuerdos de pago</div>
     <p style="font-size:14px; color:rgba(255,255,255,0.5); line-height:1.9; font-weight:300; max-width:680px;">Estoy abierta a conversar sobre la modalidad que mejor se adapte a tu momento. Podemos explorar un acuerdo <strong style="color:rgba(255,255,255,0.75); font-weight:500;">50% al inicio y 50% al finalizar</strong>, un descuento por pago total al inicio, o un plan por paquete de horas según el avance del proyecto. Lo importante es que el acuerdo funcione para ambas partes.</p>
+  </div>
+</div>
+
+
+<!-- ══ ALIADOS ══ -->
+<div class="bloque" style="background:var(--negro); padding-top:48px; padding-bottom:48px;">
+  <div class="sec-label">
+    <div class="sec-label-num" style="color:var(--acento)">✦</div>
+    <div class="sec-label-linea" style="background:rgba(255,255,255,0.08)"></div>
+    <div class="sec-label-texto" style="color:rgba(255,255,255,0.3)">Aliados Estratégicos</div>
+  </div>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+
+    <!-- TARJETA ZALENTO -->
+    <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); padding:36px 32px; display:flex; flex-direction:column; align-items:flex-start; gap:24px;">
+      <!-- Logo + nombre -->
+      <div style="display:flex; align-items:center; gap:16px;">
+        <svg width="64" height="64" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="zalento-grad2" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#C800FF"/>
+              <stop offset="100%" stop-color="#00CFFF"/>
+            </linearGradient>
+          </defs>
+          <circle cx="200" cy="200" r="195" fill="#000"/>
+          <circle cx="200" cy="200" r="185" fill="url(#zalento-grad2)"/>
+          <circle cx="200" cy="200" r="120" fill="#000"/>
+          <path d="M170,140 C170,140 150,200 175,230 C190,248 215,252 230,240 C248,226 248,200 235,183 C225,170 208,165 195,170 L210,145 Z" fill="#000" opacity="0.85"/>
+        </svg>
+        <div>
+          <a href="https://www.instagram.com/zalentoxd/" target="_blank"
+            style="font-size:18px; font-weight:700; color:#fff; letter-spacing:0.06em; text-decoration:none; font-family:'Fraunces',serif;"
+            onmouseover="this.style.color='rgba(200,0,255,0.9)'"
+            onmouseout="this.style.color='#fff'">ZALENTO ↗</a>
+          <div style="font-size:11px; color:rgba(255,255,255,0.3); font-weight:300; margin-top:3px;">Agencia Creativa</div>
+        </div>
+      </div>
+      <!-- Tags -->
+      <div style="display:flex; flex-wrap:wrap; gap:7px; margin-top:auto;">
+        <span style="font-size:9.5px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(200,0,255,0.8); background:rgba(200,0,255,0.07); border:1px solid rgba(200,0,255,0.18); padding:4px 10px;">Experience & Content</span>
+        <span style="font-size:9.5px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(0,207,255,0.8); background:rgba(0,207,255,0.07); border:1px solid rgba(0,207,255,0.18); padding:4px 10px;">Audiovisual</span>
+        <span style="font-size:9.5px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(200,0,255,0.8); background:rgba(200,0,255,0.07); border:1px solid rgba(200,0,255,0.18); padding:4px 10px;">Immersive Experiences</span>
+        <span style="font-size:9.5px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(0,207,255,0.8); background:rgba(0,207,255,0.07); border:1px solid rgba(0,207,255,0.18); padding:4px 10px;">Creative Technology</span>
+      </div>
+    </div>
+
+    <!-- TARJETA BELANCE -->
+    <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); padding:36px 32px; display:flex; flex-direction:column; align-items:flex-start; gap:24px;">
+      <!-- Logo + nombre -->
+      <div style="display:flex; align-items:center; gap:16px;">
+        <svg width="64" height="64" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="200" cy="200" r="195" fill="#1B2A4A"/>
+          <text x="108" y="268" font-family="Georgia, serif" font-size="188" font-weight="300" fill="#EEE8E0" letter-spacing="-8">Be</text>
+          <text x="305" y="268" font-family="Georgia, serif" font-size="188" font-weight="300" fill="#EEE8E0">.</text>
+          <circle cx="334" cy="248" r="10" fill="none" stroke="#EEE8E0" stroke-width="2.5" opacity="0.7"/>
+        </svg>
+        <div>
+          <div style="font-size:18px; font-weight:700; color:#fff; letter-spacing:0.06em; font-family:'Fraunces',serif;">BELANCE</div>
+          <div style="font-size:11px; color:rgba(255,255,255,0.3); font-weight:300; margin-top:3px;">Human Lab</div>
+        </div>
+      </div>
+      <!-- Tags -->
+      <div style="display:flex; flex-wrap:wrap; gap:7px; margin-top:auto;">
+        <span style="font-size:9.5px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(100,140,220,0.9); background:rgba(100,140,220,0.07); border:1px solid rgba(100,140,220,0.18); padding:4px 10px;">Neurociencia Aplicada</span>
+        <span style="font-size:9.5px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(100,140,220,0.9); background:rgba(100,140,220,0.07); border:1px solid rgba(100,140,220,0.18); padding:4px 10px;">Laboratorio Neuroexperiencial</span>
+        <span style="font-size:9.5px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(100,140,220,0.9); background:rgba(100,140,220,0.07); border:1px solid rgba(100,140,220,0.18); padding:4px 10px;">Formación & Desarrollo</span>
+        <span style="font-size:9.5px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(100,140,220,0.9); background:rgba(100,140,220,0.07); border:1px solid rgba(100,140,220,0.18); padding:4px 10px;">Comportamiento Humano</span>
+      </div>
+    </div>
+
   </div>
 </div>
 
